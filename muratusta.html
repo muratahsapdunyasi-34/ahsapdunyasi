@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Murat Ustanın Dünyası – Ahşap Oyuncak</title>
+  <style>
+    :root {
+      --bg: #FFF8E6;
+      --accent: #FF8A00;
+      --accent-dark: #CC6E00;
+      --text: #2A1A00;
+      --card: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* Üst Menü */
+    .topbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e3ded5;
+      padding: 10px 24px;
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .topbar-left { color:#777; }
+    .topbar-right a { margin-left: 12px; font-size: 13px; color:#777; }
+
+    .nav {
+      background: #ffffff;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #e3ded5;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.03em;
+      color: var(--accent-dark);
+    }
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover { border-color: var(--accent); }
+    .nav-right { display:flex; align-items:center; gap:16px; font-size:14px; }
+
+    .search-box {
+      background:#f3ece3;
+      padding:6px 10px;
+      border-radius: 999px;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size:13px;
+    }
+
+    /* Hero */
+    .hero {
+      display:grid;
+      grid-template-columns: minmax(0,1.2fr) minmax(0,1fr);
+      gap:32px;
+      padding:40px 24px 32px;
+      max-width:1150px;
+      margin:0 auto;
+      align-items:center;
+    }
+    .hero-left h1 {
+      font-size: 32px;
+      margin: 0 0 8px;
+    }
+    .hero-left p {
+      margin: 0 0 16px;
+      color:#555;
+      max-width:480px;
+    }
+    .hero-badges { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+    .badge {
+      font-size:12px;
+      padding:4px 10px;
+      border-radius:999px;
+      background:#fff7ea;
+      border:1px solid #f1ddbd;
+      color:#8a5a19;
+    }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+    .btn-primary {
+      background: var(--accent);
+      color:#fff;
+      padding:10px 18px;
+      border-radius:999px;
+      font-size:14px;
+      border:none;
+      cursor:pointer;
+    }
+    .btn-primary:hover { background: var(--accent-dark); }
+    .btn-ghost {
+      border-radius:999px;
+      border:1px solid #d0c1ab;
+      padding:9px 16px;
+      font-size:14px;
+      background:transparent;
+      cursor:pointer;
+    }
+
+    .hero-right img {
+      width:100%;
+      border-radius:18px;
+      display:block;
+      box-shadow:0 12px 30px rgba(0,0,0,0.18);
+    }
+
+    /* Bölüm başlıkları */
+    section { max-width:1150px; margin:0 auto; padding:16px 24px 40px; }
+    section h2 { font-size:22px; margin-bottom:4px; }
+    section p.section-sub { margin-top:0; color:#666; font-size:14px; }
+
+    /* Kategori çubuğu */
+    .category-bar {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin:10px 0 22px;
+    }
+    .chip {
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid #dfd3c1;
+      font-size:13px;
+      background:#fff;
+      cursor:pointer;
+    }
+    .chip-primary {
+      background:var(--accent);
+      border-color:var(--accent);
+      color:#fff;
+    }
+
+    /* Ürün grid */
+    .products {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+      gap:14px;
+    }
+    .card {
+      background:var(--card);
+      border-radius:14px;
+      padding:12px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.08);
+      display:flex;
+      flex-direction:column;
+      height:100%;
+    }
+    .card img {
+      width:100%;
+      border-radius:10px;
+      margin-bottom:10px;
+    }
+    .card h3 {
+      margin:4px 0 2px;
+      font-size:15px;
+    }
+    .card p { margin:0; font-size:13px; color:#666; }
+    .price-row { margin-top:8px; font-size:14px; font-weight:600; color:var(--accent-dark); }
+    .tag-small { font-size:11px; color:#a0773b; margin-top:4px; }
+
+    /* Hakkında bloğu */
+    .about-box {
+      background:#fff;
+      border-radius:16px;
+      padding:18px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.06);
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    /* İletişim / Alt kısım */
+    .contact {
+      text-align:center;
+      padding:32px 24px 40px;
+      background:#f3ece3;
+      margin-top:20px;
+    }
+    .contact h2 { margin-top:0; }
+    .contact p { max-width:520px; margin:8px auto; font-size:14px; color:#555; }
+    .contact .btn-primary { margin-top:10px; }
+
+    footer {
+      text-align:center;
+      padding:18px;
+      font-size:12px;
+      color:#777;
+      background:#eee4d6;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: minmax(0,1fr);
+      }
+      .nav { flex-wrap:wrap; }
+      .nav-right { width:100%; justify-content:flex-end; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-left">El yapımı natural ahşap oyuncaklar – sınırlı üretim.</div>
+    <div class="topbar-right">
+      <a href="#urunler">Yeni Gelenler</a>
+      <a href="#iletisim">Bize Ulaşın</a>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="logo">Murat Ustanın Dünyası</div>
+    <div class="nav-links">
+      <a href="#urunler">Oyuncaklar</a>
+      <a href="#hakkinda">Hakkında</a>
+      <a href="#ozel">Kişiye Özel</a>
+    </div>
+    <div class="nav-right">
+      <div class="search-box">🔍 Ahşap oyuncak ara…</div>
+      <div>Sepet (0)</div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- FOTO SLAYT (MUKABO TARZI GENİŞ SLIDER) -->
+    <div class="slider" style="position:relative;overflow:hidden;width:100%;max-height:420px;">
+      <div class="slides" style="display:flex;transition:0.6s;">
+        <img src="https://cdn.pixabay.com/photo/2017/02/12/21/29/wooden-toy-2066413_1280.jpg" style="width:100%;object-fit:cover;">
+        <img src="https://cdn.pixabay.com/photo/2017/02/12/21/29/wooden-toy-2066413_1280.jpg" style="width:100%;object-fit:cover;">
+        <img src="https://cdn.pixabay.com/photo/2017/02/12/21/29/wooden-toy-2066413_1280.jpg" style="width:100%;object-fit:cover;">
+      </div>
+      <button id="prev" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);background:var(--accent);border:none;color:white;padding:14px;border-radius:50%;cursor:pointer;font-size:22px;">‹</button>
+      <button id="next" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);background:var(--accent);border:none;color:white;padding:14px;border-radius:50%;cursor:pointer;font-size:22px;">›</button>
+    </div>
+    <script>
+      let index=0;
+      const slides=document.querySelector('.slides');
+      const total=slides.children.length;
+      function show(){slides.style.transform=`translateX(-${index*100}%)`;}
+      document.getElementById('next').onclick=()=>{index=(index+1)%total;show();};
+      document.getElementById('prev').onclick=()=>{index=(index-1+total)%total;show();};
+      setInterval(()=>{index=(index+1)%total;show();},4500);
+    </script>
+    <!-- SLAYT SONU -->
+    <!-- SLIDER BAŞLANGIÇ -->
+    <div class="slider" style="position:relative;overflow:hidden;width:100%;max-height:360px;margin-bottom:20px;">
+      <div class="slides" style="display:flex;transition:0.6s;">
+        <img src="https://cdn.pixabay.com/photo/2017/02/12/21/29/wooden-toy-2066413_1280.jpg" style="width:100%;object-fit:cover;">
+        <img src="https://cdn.pixabay.com/photo/2017/02/12/21/29/wooden-toy-2066413_1280.jpg" style="width:100%;object-fit:cover;">
+        <img src="https://cdn.pixabay.com/photo/2017/02/12/21/29/wooden-toy-2066413_1280.jpg" style="width:100%;object-fit:cover;">
+      </div>
+      <button id="prev" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);background:var(--accent);border:none;color:white;padding:10px;border-radius:50%;cursor:pointer;">‹</button>
+      <button id="next" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:var(--accent);border:none;color:white;padding:10px;border-radius:50%;cursor:pointer;">›</button>
+    </div>
+    <script>
+      let index=0;
+      const slides=document.querySelector('.slides');
+      const total=slides.children.length;
+      document.getElementById('next').onclick=()=>{index=(index+1)%total;slides.style.transform=`translateX(-${index*100}%)`;};
+      document.getElementById('prev').onclick=()=>{index=(index-1+total)%total;slides.style.transform=`translateX(-${index*100}%)`;};
+      setInterval(()=>{index=(index+1)%total;slides.style.transform=`translateX(-${index*100}%)`;},5000);
+    </script>
+    <!-- SLIDER BİTİŞ -->
+    <section class="hero" id="anasayfa">
+      <div class="hero-left">
+        <div class="hero-badges">
+          <span class="badge">El yapımı · Natural ahşap</span>
+          <span class="badge">Çocuk sağlığına uygun</span>
+        </div>
+        <h1>Murat Ustanın Dünyası – Ahşap Oyuncak</h1>
+        <p>
+          Her biri elde tek tek zımparalanmış, doğal yağlarla korunmuş ahşap oyuncaklar.
+          Çocuklar için güvenli, eviniz için sıcak ve estetik.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="document.getElementById('urunler').scrollIntoView({behavior:'smooth'});">Yeni Gelenleri Gör</button>
+          <button class="btn-ghost" onclick="document.getElementById('iletisim').scrollIntoView({behavior:'smooth'});">WhatsApp ile Sipariş Ver</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <img src="https://cdn.pixabay.com/photo/2017/02/12/21/29/wooden-toy-2066413_1280.jpg" alt="Ahşap oyuncaklardan oluşan vitrin" />
+      </div>
+    </section>
+
+    <section id="urunler">
+      <h2>Öne Çıkan Ahşap Oyuncaklar</h2>
+      <p class="section-sub">Sınırlı sayıda üretilen, elde yapılmış 5 özel model.</p>
+
+      <div class="category-bar">
+        <span class="chip chip-primary">Tüm Ürünler</span>
+        <span class="chip">Araba & Kamyon</span>
+        <span class="chip">Montessori & Puzzle</span>
+        <span class="chip">Tren & Setler</span>
+        <span class="chip">Hediyelik Figür</span>
+        <span class="chip">İsimli Özel Tasarım</span>
+      </div>
+
+      <div class="products">
+        <article class="card">
+          <img src="https://cdn.pixabay.com/photo/2017/02/12/21/29/wooden-toy-2066413_1280.jpg" alt="El yapımı ahşap araba" />
+          <h3>El Yapımı Ahşap Araba</h3>
+          <p>Yuvarlak hatlı, doğal cilalı klasik oyuncak araba.</p>
+          <div class="price-row">450 TL</div>
+          <button class="btn-primary" style="margin-top:6px;width:100%;" onclick="addToCart('El Yapımı Ahşap Araba',450)">Sepete Ekle</button>
+          <div class="tag-small">+ 3 yaş · Zımparalı köşe · Çocuk dostu yağ</div>
+        </article>
+
+        <article class="card">
+          <img src="https://cdn.pixabay.com/photo/2017/02/12/21/29/wooden-toy-2066413_1280.jpg" alt="Ahşap puzzle" />
+          <h3>Hayvan Figürlü Puzzle</h3>
+          <p>Montessori yaklaşımıyla tasarlanmış, el boyaması detaylı puzzle.</p>
+          <div class="price-row">520 TL</div>
+          <button class="btn-primary" style="margin-top:6px;width:100%;" onclick="addToCart('Hayvan Figürlü Puzzle',520)">Sepete Ekle</button>
+          <div class="tag-small">Eğitici · İnce motor becerileri</div>
+        </article>
+
+        <article class="card">
+          <img src="https://cdn.pixabay.com/photo/2017/02/12/21/29/wooden-toy-2066413_1280.jpg" alt="Ahşap tren seti" />
+          <h3>Mini Ahşap Tren Seti</h3>
+          <p>Lokomotif + 2 vagonlu, mıknatıslı bağlantılı tren seti.</p>
+          <div class="price-row">690 TL</div>
+          <button class="btn-primary" style="margin-top:6px;width:100%;" onclick="addToCart('Mini Ahşap Tren Seti',690)">Sepete Ekle</button>
+          <div class="tag-small">Hayal gücünü destekler</div>
+        </article>
+
+        <article class="card">
+          <img src="https://cdn.pixabay.com/photo/2017/02/12/21/29/wooden-toy-2066413_1280.jpg" alt="Ahşap dekor" />
+          <h3>Ahşap Ev Dekoru</h3>
+          <p>Raf üstü için sade, naturel ahşap figür seti.</p>
+          <div class="price-row">380 TL</div>
+          <button class="btn-primary" style="margin-top:6px;width:100%;" onclick="addToCart('Ahşap Ev Dekoru',380)">Sepete Ekle</button>
+          <div class="tag-small">Ev & Ofis hediyeliği</div>
+        </article>
+
+        <article class="card" id="ozel">
+          <img src="https://cdn.pixabay.com/photo/2017/02/12/21/29/wooden-toy-2066413_1280.jpg" alt="Kişiye özel isimli oyuncak" />
+          <h3>Kişiye Özel İsimli Oyuncak</h3>
+          <p>Çocuğun adının işlendiği, tamamen size özel tasarım.</p>
+          <div class="price-row">Fiyat: Tasarıma göre değişir</div>
+          <div class="tag-small">Doğum günü · Yeni doğan hediyesi</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="hakkinda">
+      <h2>Murat Usta Kimdir?</h2>
+      <p class="section-sub">Atölyeden çıkan her parça, elle son kontrolden geçer.</p>
+      <div class="about-box">
+        Murat Ustanın Dünyası, küçük bir ahşap atölyesinde tek tek elde üretilen oyuncaklar ve
+        hediyelikleri bir araya getirir. Kullanılan tüm ahşaplar doğal yapısını koruyan masif
+        ağaçlardır; cila için çocuk sağlığına uygun, sertifikalı doğal yağlar tercih edilir.
+        <br /><br />
+        Seri üretim yerine, az ama özenli üretim anlayışıyla çalışılır. Her ürün, önce usta
+        ellerde şekillenir, ardından zımparalanır, köşeleri yuvarlatılır ve son olarak doğal yağ
+        ile korunur. Böylece hem çocukların güvenle oynayabileceği, hem de yıllarca saklanabilecek
+        kaliteli parçalar ortaya çıkar.
+      </div>
+    </section>
+  </main>
+
+  <section class="contact" id="iletisim">
+    <h2>Sipariş & İletişim</h2>
+    <p>
+      Merak ettiğiniz bir model, özel ölçü ya da isimli tasarım varsa, WhatsApp üzerinden hızlıca
+      ulaşabilirsiniz. Fotoğraf göndererek birlikte tasarım da yapabilirsiniz.
+    </p>
+    <a class="btn-primary" href="https://wa.me/90XXXXXXXXXX" target="_blank">WhatsApp ile Yaz</a>
+    <p style="margin-top:10px; font-size:13px; color:#7a6850;">
+      İsteğe göre Instagram mağaza bağlantısı ve konum bilgisi bu alana eklenebilir.
+    </p>
+  </section>
+
+  <footer>
+    © 2025 Murat Ustanın Dünyası – Ahşap Oyuncak · El yapımı natural ürünler
+  </footer>
+<script>
+let cart=[];
+function addToCart(name,price){cart.push({name,price});updateCart();}
+function updateCart(){const box=document.getElementById('cart-box');box.innerHTML='';let total=0;cart.forEach(i=>{total+=i.price;box.innerHTML+=`<div>${i.name} – ${i.price} TL</div>`});box.innerHTML+=`<hr><b>Toplam: ${total} TL</b>`;}
+</script>
+</body>
+</html>
